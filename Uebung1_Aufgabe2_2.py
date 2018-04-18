@@ -4,25 +4,6 @@ zahl3 = int(input("Zahl3:"))
 
 print("Die Groeßte Zahl ist:")
 
-#if zahl1 > zahl2:
-#    if zahl1 > zahl3:
-#        print(zahl1)
-#    elif zahl1 < zahl3:
-#        print(zahl3)
-#    else:
-#        print(zahl1, "und", zahl3)
-#elif zahl1 < zahl2:
-#    if zahl2 > zahl3:
-#        print(zahl2)
-#    elif zahl2 < zahl3:
-#        print(zahl3)
-#    else:
-#        print(zahl2, "und", zahl3)
-#elif zahl1 == zahl2:
-#    print(zahl1, "und", zahl2)
-#else:
-#    print(zahl1, ",",zahl2,"und", zahl3)
-
 if zahl1 > zahl2 and zahl1 > zahl3:
     print("Zahl1 ist am größten und hat den Wert ", zahl1)
 elif zahl2 > zahl1 and zahl2 > zahl3:
