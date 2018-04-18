@@ -9,4 +9,6 @@ n = float(input("Wieviele Perioden hast du angelegt?"))
 
 p = ((K/K0))**(1/n) - 1
 
+p = round(p,2)
+
 print("Der Zinssatz beträgt ", p, ".")
