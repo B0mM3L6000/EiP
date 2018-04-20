@@ -11,7 +11,6 @@ p = float(input("Was ist der Zins?"))
 
 n = math.log((K/K0))/math.log((1+p))
 
-n = round(n,2)
-
+n = round(n,2) #auf 2 Nachkommastellen runden
 
 print("Du hast über ", n ," Perioden angelegt.")

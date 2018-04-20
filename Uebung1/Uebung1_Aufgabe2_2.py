@@ -2,7 +2,9 @@ zahl1 = int(input("Zahl1:"))
 zahl2 = int(input("Zahl2:"))
 zahl3 = int(input("Zahl3:"))
 
-print("Die Groeßte Zahl ist:")
+print("Die Größte Zahl ist:")
+
+#die einzelnen Fälle überprüfen und den entsprechenden Fall ausgeben:
 
 if zahl1 > zahl2 and zahl1 > zahl3:
     print("Zahl1 ist am größten und hat den Wert ", zahl1)
