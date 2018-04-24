@@ -17,6 +17,3 @@ for _ in range(n*2-1):
         print ("0", end='')
         print ((zeilenbreite-2)*" ", end='')
         print ("0")
-
-
-#könnte man auch für 6.4 direkt verwenden
