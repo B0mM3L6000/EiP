@@ -4,13 +4,11 @@ from math import sqrt
 
 p = 10101 
 # ab welcher Zahl soll geprüft werden?
-
 ende = 10901 
 # bis welche Zahl soll geprüft werden?
 
 while p <= (ende-2): 
     # ende-2, damit 10901 letztmögliches Teil eines Primzahlzwillings ist.
-    
     teiler = 2
     while teiler <= int(sqrt(p)):
         if p % teiler == 0:
