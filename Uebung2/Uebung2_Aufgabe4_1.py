@@ -16,7 +16,7 @@ while p <= (ende-2):
         if p % teiler == 0:
             break 
             # p ist keine Primzahl.
-            # Sprung auf Zeile 29.
+            # Sprung auf Zeile 38.
         else:
             teiler += 1  
             # Prüfe, ob p durch nächsten Teiler teiler+1 ohne Rest dividierbar ist.
