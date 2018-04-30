@@ -1,0 +1,32 @@
+Übung2:
+
+Aufgabe 5.2:
+
+Für die Werte
+
+    R = 450
+    n = 25
+
+und der Zinsrate
+
+    p = 0.03
+
+ist das Endkapital nach unserem Programm
+    
+    K = 16898.869013157622
+
+und mit der Zinsrate
+
+    p = 0.04
+
+ist das Endkapital
+
+    K = 19490.28507840282
+
+
+
+Aufgabe 5.3:
+
+Man könnte den Zins aus dem Eingangsbeispiel ermitteln, indem man unser Programm aus Aufgabenteil 5.1 in eine weitere Schleife packt und diese verschiedene Zinssätze ausprobieren lässt. Zum Beispiel würde man bei 0.00 anfangen und dann in 0.01 Schritten weiter durchgehen, bis das Endkapital den gegeben Wert erreicht oder überschreitet. Sobald dies der Fall ist hat man die Zinsrate auf 2 Nachkommastellen genau ermittelt.
+Nicht sehr elegant aber es würde funktionieren.
+
