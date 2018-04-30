@@ -8,10 +8,8 @@ n = float(input("Perioden:"))
 K = 0
 
 zaehler = int(n)
-i = 1
 
-while i < zaehler+1:
+for _ in range(1,zaehler+1):
     K = (K + R)*(1+p)
-    i = i+1
 
 print("Endkapital:",K)
