@@ -1,7 +1,8 @@
 n = int(input("Welcher Wert für n?"))
 
-i = 1
+j = 0
 zeilenbreite = n + (n-1)
 
-for _ in range(n):
+while j < n:
     print(zeilenbreite*"0")
+    j = j+1

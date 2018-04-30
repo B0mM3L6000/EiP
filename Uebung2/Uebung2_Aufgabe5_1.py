@@ -5,13 +5,15 @@ p = float(input("Zins:"))
 # Einlesen des Wertes n
 n = float(input("Perioden:"))
 
+#Variablen initialisieren:
 K = 0
-
 zaehler = int(n)
 i = 1
 
+#Perioden durchgehen und Raten einzahlen und dann verzinsen:
 while i < zaehler+1:
     K = (K + R)*(1+p)
-    i = i+1
+    i = i+1    #Erhöhen von i um 1 je Episode
 
-print("Endkapital:",K)
+#Ausgabe des Endkapitals
+print(K)
