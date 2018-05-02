@@ -1,4 +1,4 @@
-n = int(input("Welche Startzahl für die Collatz Folge?"))
+n = int(2367363789863971985761)
 
 #überprüfen welche länge n = 2367363789863971985761 hat
 #print(n)
