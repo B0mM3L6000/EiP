@@ -44,3 +44,30 @@ if(sorted(picks) == picks):
 else:
     print("picks are not sorted!")
     print("your picks:", picks)
+
+"""
+Aufgabe 12.1:
+
+
+
+"""
+
+
+# 12.3:
+getippt = False
+while getippt == False:
+    tipp = [int(i) for i in (input("Tippe 6 Zahlen:").split())]
+    if (len(set(tipp)) == 6) & (all(k in range(1,50) for k in picks)):
+        getippt = True
+    else:
+        print("Bitte genau 6 verschiedene Zahlen zwischen 1 und 49 tippen.")
+
+tipp.sort()
+
+tippset = set(tipp)
+picksset = set(picks)
+treffer = list(picksset.intersection(tippset))
+count_treffer = len(treffer)
+
+print("Folgende Zahlen sind richtig:",treffer)
+print("Du hast", count_treffer, "Richtige!")
