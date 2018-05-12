@@ -1,7 +1,11 @@
+# import:
 import random
 
 # die Liste der gezogenen Lottozahlen (sauce header)
 picks = list()
+
+
+# code:
 
 #liste der zur auswahl stehenden zahlen (hier 1-49)
 zahlen = list(range(1,50))
