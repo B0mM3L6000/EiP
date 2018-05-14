@@ -16,7 +16,7 @@ anzahl = 6
 
 #ziehungen: jeweils eine zahl ziehen und zu picks hinzufügen und aus zahlen entfernen um doppelte zu vermeiden
 for i in range(anzahl):
-    j = random.randint(0, len(zahlen)-i)
+    j = random.randint(0, len(zahlen)-i-1)
     picks.append(zahlen[j])
     zahlen.remove(zahlen[j])
 
@@ -56,7 +56,7 @@ Aufgabe 12.1:
 
 """
 
-
+"""
 # Aufgabe 12.3:
 getippt = False
 while getippt == False:
@@ -75,8 +75,9 @@ count_treffer = len(treffer)
 
 print("Folgende Zahlen sind richtig:",treffer)
 print("Du hast", count_treffer, "Richtige!")
+"""
 
-
+"""
 # Aufgabe 12.4:
 
 #Simuliere random tipps bis sie mit den 6 rnd picks von lotto übereinstimmen
@@ -95,16 +96,16 @@ for _ in range(x):
         zahlen = list(range(1,50))
         anzahl = 6
         for i in range(anzahl):
-            j = random.randint(0, len(zahlen)-i)
+            j = random.randint(0, len(zahlen)-i-1)
             picks.append(zahlen[j])
             zahlen.remove(zahlen[j])
-            picks.sort()
+        picks.sort()
 
         #für tipps:
         tipps = list()
         zahlen = list(range(1,50))
         for i in range(anzahl):
-            j = random.randint(0, len(zahlen)-i)
+            j = random.randint(0, len(zahlen)-i-1)
             tipps.append(zahlen[j])
             zahlen.remove(zahlen[j])
         tipps.sort()
@@ -125,4 +126,13 @@ mittel = zaehler/x
 print(mittel)
 
 
-# Ergebnis mit x = 1000: Im Mittel braucht man .... Tipps um 6 Richtige zu erhalten.
+# Ergebnis mit x = 1: Im Mittel braucht man 10011063.0 Tipps um 6 Richtige zu erhalten.
+# Ergebnis mit x = 10: Im Mittel braucht man 11212583.5 Tipps um 6 Richtige zu erhalten.
+# Zu aufwendig für mehr.
+
+#Mathematisch:
+#   Mögliche Permutationen der Ziehung: (49 über 6) = 49!/(6!*43!) = 13 983 816
+#   Mögliche Tipps die dazu passen: (6 über 6) = 6!/6! = 1
+#   => P(6 Richtige) = 1/13983816   bzw im Mitel braucht man 13 983 816 Versuche für 6 Richtige.
+
+"""

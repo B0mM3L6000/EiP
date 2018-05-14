@@ -27,3 +27,10 @@ for j in range(len(a)):
 
 #sauce output:
 print(c)
+
+
+"""
+Aufgabe 11.1:
+
+
+"""
