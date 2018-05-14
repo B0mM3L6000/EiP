@@ -52,7 +52,7 @@ else:
 """
 Aufgabe 12.1:
 
-
+Da es sich um eine Zeihung ohne Zurücklegen handelt, ist die Wahrscheinlichkeit jeder Permutation gleich.
 
 """
 
