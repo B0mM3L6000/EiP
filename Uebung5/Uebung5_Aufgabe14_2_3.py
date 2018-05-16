@@ -128,7 +128,7 @@ Aufgabe 14.3:
 
 Für intervallsucheabsolut2:
 
-2*(n-(anzahl aller zahlen größer als oben)+1)
+2*(n-(anzahl aller zahlen größer als oben))+1
 
 
 Falls unsortiert:
