@@ -62,16 +62,21 @@ Welche Länge muss das Feld besitzen?
 
 Antwort:
 
-
+Summe (von i = 1 bis n) [ i ]
 
 _______________________________________________________________________
 
 
 Aufgabe 13.3:
 
+n*(n+1)/2 + k = Sum(von i=0 bis n)[i]   +   k
 
-
-
-
+Dies summiert immer die Anzahl der Elemente in einer Zeile des Pascalchen
+Dreieck auf. Da man in Listen bei 0 anfängt die Indexe zu zählen, statt bei 1,
+ist man so immer bei dem 1. Element der Zeile. Addiert man nun k auf dieses Element,
+so landet man genau bei dem Element k in zeile n also dem Binomialkoeffizienten
+n über k (k bei 0 anfangen zu zählen).
+Da das eindimensionale Feld nichts anderes ist, als das Pascalche Dreieck in einer
+Reihe aufgeschrieben, stimmt die Aussage aus 13.3
 
 """

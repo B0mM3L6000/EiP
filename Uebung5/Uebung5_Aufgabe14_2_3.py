@@ -73,6 +73,7 @@ Wert mit der selben Zahl ist.
 
 Daher:
 """
+#Variante 1:
 
 def intervallsucheabsolut(unten, oben, feld2):
     intervall = list(range(unten, oben+1))
@@ -85,10 +86,25 @@ def intervallsucheabsolut(unten, oben, feld2):
                 break
     return zaehler
 
+
+#Variante 2:
+
+def intervallsucheabsolut2(unten, oben, feld2):
+    zaehler = 0
+    for j in range(len(feld2)):
+        if feld2[j] <= oben:
+            if feld2[j] >= unten:
+                zaehler += 1
+        else:
+            break
+    return zaehler
+
+
+
 #ausführen:
 
 
-numElements = intervallsucheabsolut(unten, oben, a)
+numElements = intervallsucheabsolut2(unten, oben, a)
 #testlist = set(a)
 #print(len(testlist))
 
@@ -110,8 +126,14 @@ else:
 
 Aufgabe 14.3:
 
+Für intervallsucheabsolut2:
+
+2*(n-(anzahl aller zahlen größer als oben)+1)
 
 
+Falls unsortiert:
+
+2*n Vergleiche, da man nicht früher abbrechen kann und nichts einschränken kann.
 
 
 """
