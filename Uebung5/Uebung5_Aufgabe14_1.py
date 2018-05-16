@@ -3,7 +3,7 @@
 import random
 # Die sortierte Liste
 random.seed()
-a = [random.randint(1,1000) for i in range(5000)]
+a = [random.randint(1,1000) for i in range(50)]
 a.sort()
 
 #Die zu suchende Zahl
@@ -16,12 +16,9 @@ found = False
 
 #CODE:
 
-#länge des felds:
-
 
 def suche(x, feld):
     gefunden = False
-    #Punkt zum testen:
     n = len(feld)
     #print("Längefeld:",n)
     if n%2 == 0:
@@ -34,6 +31,9 @@ def suche(x, feld):
     if feld[n-1] == x:
         gefunden = True
         #print("gefunden")
+    #testen ob das feld vollständig durchsucht wurde:
+    elif n <=1:
+        gefunden = False
     #rekursiv mit neuem feld je nachdem ob x kleiner oder größer feld[n-1]
     elif feld[n-1] > x:
         feld = feld[0:n]
