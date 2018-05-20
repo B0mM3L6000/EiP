@@ -1,4 +1,5 @@
 import pygame as pg
+import time
 
 """
 
@@ -100,19 +101,37 @@ def action():
     fehler = True
     while fehler == True:
         action = int(input("Welche Spalte (0-6)?"))
-        if action >=0 and action <=6:
+        if action >=1 and action <=7:
             fehler = False
         else:
             print("ungültige eingabe")
-    spalte = action
+    spalte = action-1
     return spalte
 
-def rendern(feld):
+def rendern(feld, bildschirm):
     #aktuelles feld rendern
     for i in range(6):
         print(feld[i])
     print("_____________________")
-    print (list(range(7)))
+    print (list(range(1,8)))
+    zeilen = 7
+    spalten = 7
+    zellbreite = 100
+    weiss = [255,255,255]
+    gelb = [0,255,0]
+    rot = [255,0,0]
+    blau = [0,0,255]
+    bildschirm.fill(blau)
+    pg.draw.rect(bildschirm,weiss,(0,0,700,100))
+    for zeile in range(1,zeilen):
+        for spalte in range(spalten):
+            if feld[zeile-1][spalte] == 0:
+                pg.draw.circle(bildschirm, weiss,(spalte*100+50,zeile*100+50),45)
+            elif feld[zeile-1][spalte] == 1:
+                pg.draw.circle(bildschirm, gelb,(spalte*100+50,zeile*100+50),45)
+            elif feld[zeile-1][spalte] == 2:
+                pg.draw.circle(bildschirm, rot,(spalte*100+50,zeile*100+50),45)
+    pg.display.flip()
 
 def steinsetzen(spielfeld, spalte, spieler):
     #ersten freien Platz suchen
@@ -132,21 +151,45 @@ def errortest(spielfeld, spalte):
         error = False
     return error
 
-
+def pygamestart(spielfeld):
+    zeilen = 7
+    spalten = 7
+    zellbreite = 100
+    weiss = [255,255,255]
+    geld = [0,255,0]
+    rot = [255,0,0]
+    blau = [0,0,255]
+    pg.init()
+    pg.display.set_caption("Vier gewinnt")
+    bildschirm = pg.display.set_mode((spalten*zellbreite,zeilen*zellbreite))
+    #clock = pg.time.Clock()
+    bildschirm.fill(blau)
+    pg.draw.rect(bildschirm,weiss,(0,0,700,100))
+    for zeile in range(1,zeilen):
+        for spalte in range(spalten):
+            if spielfeld[zeile-1][spalte] == 0:
+                pg.draw.circle(bildschirm, weiss,(spalte*100+50,zeile*100+50),45)
+            elif spielfeld[zeile-1][spalte] == 1:
+                pg.draw.circle(bildschirm, gelb,(spalte*100+50,zeile*100+50),45)
+            elif spielfeld[zeile-1][spalte] == 2:
+                pg.draw.circle(bildschirm, rot,(spalte*100+50,zeile*100+50),45)
+    pg.display.flip()
+    return bildschirm
 
 
 def spiel():
     spiel = True
     win = False
     spielfeld = initialisieren()
-    rendern(spielfeld)
+    bildschirm = pygamestart(spielfeld)
+    rendern(spielfeld, bildschirm)
     while spiel:
         error = True
         while error == True:
             spalte = action()
             error = errortest(spielfeld, spalte)
         spielfeld = steinsetzen(spielfeld, spalte, 1)
-        rendern(spielfeld)
+        rendern(spielfeld, bildschirm)
         win = wincheck(spielfeld, 1)
         if win == True:
             spiel = False
@@ -157,13 +200,19 @@ def spiel():
             spalte = action()
             error = errortest(spielfeld, spalte)
         spielfeld = steinsetzen(spielfeld, spalte, 2)
-        rendern(spielfeld)
+        rendern(spielfeld, bildschirm)
         win = wincheck(spielfeld, 2)
         if win == True:
             spiel = False
             winner = 2
             break
     #Winnerscreen mit winner
+    font = pg.font.SysFont('Times', 100, False, False)
+    schwarz = [0,0,0]
+    text = font.render('Gewonnen!',True,schwarz)
+    bildschirm.blit(text,[135,0])
+    pg.display.flip()
+    time.sleep(10)
     print("gewinner ist spieler", winner)
 
 
