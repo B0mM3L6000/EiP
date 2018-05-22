@@ -96,24 +96,53 @@ def wincheck(spielfeld, spieler):
     return gewonnen
 
 
-def action():
+def action(spielfeld, bildschirm, spieler):
     #aktion für aktuellen spieler ermöglichen + rendern
+    action = 3
+    if spieler == 1:
+        tmpspieler = 1
+    elif spieler == 2:
+        tmpspieler = 2
+    inputende = False
+    while not inputende:
+        for e in pg.event.get():
+            if e.type == pg.KEYDOWN:
+                # Wenn die Pfeil-nach-links-Taste gedrückt wurde, bewegen wir den Kreis nach links.
+                if e.key == pg.K_LEFT:
+                    if action -1 < 0:
+                        action = 0
+                    else:
+                        action -= 1
+                    rendern(spielfeld, bildschirm, tmpspieler, action)
+                # Wenn die Pfeil-nach-rechts-Taste gedrückt wurde, bewegen wir den Kreis nach rechts.
+                elif e.key == pg.K_RIGHT:
+                    if action +1 > 6:
+                        action = 6
+                    else:
+                        action += 1
+                    rendern(spielfeld, bildschirm, tmpspieler, action)
+                elif e.key == pg.K_RETURN:
+                    inputende = True
+    """
     fehler = True
     while fehler == True:
-        action = int(input("Welche Spalte (0-6)?"))
+        #action = int(input("Welche Spalte (0-6)?"))
         if action >=1 and action <=7:
             fehler = False
         else:
             print("ungültige eingabe")
-    spalte = action-1
+    """
+    spalte = action
     return spalte
 
-def rendern(feld, bildschirm):
+def rendern(feld, bildschirm, spieler, action):
     #aktuelles feld rendern
+    """
     for i in range(6):
         print(feld[i])
     print("_____________________")
     print (list(range(1,8)))
+    """
     zeilen = 7
     spalten = 7
     zellbreite = 100
@@ -131,6 +160,10 @@ def rendern(feld, bildschirm):
                 pg.draw.circle(bildschirm, gelb,(spalte*100+50,zeile*100+50),45)
             elif feld[zeile-1][spalte] == 2:
                 pg.draw.circle(bildschirm, rot,(spalte*100+50,zeile*100+50),45)
+    if spieler == 1:
+        pg.draw.circle(bildschirm, gelb, (action*100+50,50),45)
+    elif spieler == 2:
+        pg.draw.circle(bildschirm, rot, (action*100+50,50), 45)
     pg.display.flip()
 
 def steinsetzen(spielfeld, spalte, spieler):
@@ -146,7 +179,7 @@ def errortest(spielfeld, spalte):
     #testen ob oberstes Element der Spalte leer ist
     if spielfeld[0][spalte] != 0:
         error = True
-        print("Spalte bereits voll")
+        #print("Spalte bereits voll")
     else:
         error = False
     return error
@@ -182,14 +215,14 @@ def spiel():
     win = False
     spielfeld = initialisieren()
     bildschirm = pygamestart(spielfeld)
-    rendern(spielfeld, bildschirm)
+    rendern(spielfeld, bildschirm, 1, 3)
     while spiel:
         error = True
         while error == True:
-            spalte = action()
+            spalte = action(spielfeld, bildschirm, 1)
             error = errortest(spielfeld, spalte)
         spielfeld = steinsetzen(spielfeld, spalte, 1)
-        rendern(spielfeld, bildschirm)
+        rendern(spielfeld, bildschirm,2, 3)
         win = wincheck(spielfeld, 1)
         if win == True:
             spiel = False
@@ -197,10 +230,10 @@ def spiel():
             break
         error = True
         while error == True:
-            spalte = action()
+            spalte = action(spielfeld, bildschirm, 2)
             error = errortest(spielfeld, spalte)
         spielfeld = steinsetzen(spielfeld, spalte, 2)
-        rendern(spielfeld, bildschirm)
+        rendern(spielfeld, bildschirm,1, 3)
         win = wincheck(spielfeld, 2)
         if win == True:
             spiel = False
@@ -209,11 +242,17 @@ def spiel():
     #Winnerscreen mit winner
     font = pg.font.SysFont('Times', 100, False, False)
     schwarz = [0,0,0]
+    gruen = [0,255,0]
+    rot = [255,0,0]
+    if winner == 1:
+        bildschirm.fill(gruen)
+    elif winner == 2:
+        bildschirm.fill(rot)
     text = font.render('Gewonnen!',True,schwarz)
-    bildschirm.blit(text,[135,0])
+    bildschirm.blit(text,[135,250])
     pg.display.flip()
-    time.sleep(10)
-    print("gewinner ist spieler", winner)
+    time.sleep(2)
+    #print("gewinner ist spieler", winner)
 
 
 
