@@ -233,7 +233,7 @@ def rendern(weg):
             elif weg[zeile][spalte] == "Z":
                 pg.draw.rect(bildschirm, red,(spalte*pixel,zeile*pixel,pixel, pixel))
     pg.display.flip()
-    time.sleep(15)
+    time.sleep(5)
 
 #momentaner punkt pygame:
 
@@ -258,7 +258,7 @@ def rendersearch(weg, pfad):
         #print(pfad[_][0])
         pg.draw.rect(bildschirm, red, (pfad[_][1]*pixel,pfad[_][0]*pixel, pixel, pixel))
     pg.display.flip()
-    time.sleep(0.001)
+    time.sleep(0.0001)
 
 
 
