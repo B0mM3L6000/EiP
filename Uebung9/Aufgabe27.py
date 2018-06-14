@@ -34,7 +34,7 @@ class Konto:
                 return Konto(self.Kontostand, self.Kontoinhaber, self.Kontonummer), Konto(zielKonto.Kontostand, zielKonto.Kontoinhaber, zielKonto.Kontonummer)
 
     def __str__(self):
-        printing = "-Konto: "
+        printing = "Konto: "
         printing += str(self.Kontonummer) + " - Inhaber: " + str(self.Kontoinhaber) + " - Kontostand: " + str(self.Kontostand)
         return printing
         #return str((-Konto: self.Kontonummer - Inhaber: ',self.Kontoinhaber,' - Kontostand: ',self.Kontostand))
