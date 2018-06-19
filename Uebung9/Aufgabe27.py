@@ -7,14 +7,14 @@ class Konto:
         self.Kontonummer = nummer
 
     def einzahlen(self, betrag):
-        if betrag < 0:
+        if betrag <= 0:
             return Konto(self.Kontostand, self.Kontoinhaber, self.Kontonummer)
         else:
             self.Kontostand = self.Kontostand + betrag
             return Konto(self.Kontostand, self.Kontoinhaber, self.Kontonummer)
 
     def abheben(self, betrag):
-        if betrag > self.Kontostand:
+        if betrag > self.Kontostand and betrag < 0:
             return Konto(self.Kontostand, self.Kontoinhaber, self.Kontonummer)
         else:
             self.Kontostand = self.Kontostand - betrag
@@ -57,8 +57,8 @@ print(Konto2)
 
 ###################
 """
-Konto1 = Konto(5, "Martin", 1)
-Konto2 = Konto(-9, "Martin", 2)
+Konto1 = Konto(5, "Max", 1)
+Konto2 = Konto(-9, "Maria", 2)
 
 print(Konto1)
 print(Konto2)
@@ -88,9 +88,10 @@ Konto1.ueberweisen(Konto2, 7)
 print(Konto1)
 print(Konto2)
 
-Konto1.einzahlen(-3)
+Konto1.ueberweisen(Konto2,-3)
 
 print(Konto1)
 print(Konto2)
 
+Konto1.abheben(-3)
 """
