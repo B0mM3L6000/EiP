@@ -1,5 +1,34 @@
 
 
+class Encoder:
+    def __init__(self, encoding = {}):
+        self.encoding = encoding
+
+    def updateEncoding(self,string1,string2):
+        list1 = str.split(string1)
+        list2 = str.split(string2)
+        self.encoding = {}
+        for i in range(len(list1)):
+            self.encoding[list1[i]] = list2[i]
+
+    def encode(self, string):
+        encodedstring = ""
+        toencode = str.split(string)
+        for i in range(len(toencode)):
+            encodedstring += self.encoding[toencode[i]] + " "
+        return encodedstring
+
+    def decode(self, string):
+        decodedic = {}
+        for key in self.encoding:
+            decodedic[self.encoding[key]] = key
+        decodedstring = ""
+        todecode = str.split(string)
+        for i in range(len(todecode)):
+            decodedstring += decodedic[todecode[i]] + " "
+        return decodedstring
+
+
 
 
 
