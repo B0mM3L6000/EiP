@@ -4,6 +4,39 @@ from random import randint
 
 ###################################
 
+class Node:
+
+    def __init__(self, value, pred = None, succ = None):
+        self.pred = pred
+        self.succ = succ
+        self.value = value
+
+
+class Liste:
+
+    def __init__(self, beginNode = None, endNode = None):
+        self.beginNode = beginNode
+        self.endNode = endNode
+
+    def append(self, newNodeapp):
+        if self.beginNode == None:
+            self.beginNode = newNodeapp
+        else:
+            newNodeapp.pred = self.endNode
+            self.endNode.succ = newNodeapp
+        self.endNode = newNodeapp
+
+    def length(self):
+        pass
+
+    def __getitem__(self, position):
+        pass
+
+    def insert(self, position, newNodeins):
+        pass
+
+    def __delitem__(self, position):
+        pass
 
 
 
