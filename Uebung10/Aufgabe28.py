@@ -6,9 +6,9 @@ from random import randint
 
 class Node:
 
-    def __init__(self, value, pred = None, succ = None):
-        self.pred = pred
-        self.succ = succ
+    def __init__(self, value):
+        self.pred = None
+        self.succ = None
         self.value = value
 
 
@@ -27,16 +27,126 @@ class Liste:
         self.endNode = newNodeapp
 
     def length(self):
-        pass
+        count = 0
+        currentNode = self.beginNode
+        while currentNode != None:
+            count += 1
+            currentNode = currentNode.succ
+        return count
 
     def __getitem__(self, position):
-        pass
+        if position < -1:
+            currentNode = self.endNode
+            for i in range(1, abs(position)):
+                currentNode = currentNode.pred
+            return currentNode.value
+        elif position == -1:
+            return self.endNode.value
+        elif position == 0:
+            return self.beginNode.value
+        else:
+            currentNode = self.beginNode
+            for i in range(1,position+1):
+                currentNode = currentNode.succ
+            return currentNode.value
 
-    def insert(self, position, newNodeins):
-        pass
+    def insert(self, newNodeins, position):
+        if position == 0:
+            #print("swag")
+            newNodeins.succ = self.beginNode
+            succNode = self.beginNode
+            if self.beginNode != None:
+                succNode.pred = newNodeins
+            self.beginNode = newNodeins
+            if self.endNode == None:
+                self.endNode = newNodeins
+                #print("ultraswag")
+        elif position == -1:
+            self.append(newNodeins)
+        elif position < -1:
+            if abs(position) > self.length():
+                newNodeins.succ = self.beginNode
+                self.beginNode = newNodeins
+                if self.endNode == None:
+                    self.endNode = newNodeins
+            else:
+                currentNode = self.endNode
+                for i in range(1,abs(position)+1):
+                    currentNode = currentNode.pred
+                succNode = currentNode.succ
+                succNode.pred = newNodeins
+                currentNode.succ = newNodeins
+                newNodeins.pred = currentNode
+                newNodeins.succ = succNode
+        elif position >= self.length():
+            newNodeins.pred = self.endNode
+            if self.endNode == None:
+                self.endNode = newNodeins
+                #print("schala")
+                #print(self.endNode)
+            if self.beginNode == None:
+                self.beginNode = newNodeins
+                #print("lala")
+                #print(self.beginNode)
+            else:
+                predNode = self.endNode
+                predNode.succ = newNodeins
+                self.endNode = newNodeins
+                #print("yolo")
+        elif position > 0:
+            currentNode = self.beginNode
+            for i in range(1,position+1):
+                currentNode = currentNode.succ
+            predNode = currentNode.pred
+            #print(currentNode.pred)
+            predNode.succ = newNodeins
+            currentNode.pred = newNodeins
+            newNodeins.pred = predNode
+            newNodeins.succ = currentNode
 
     def __delitem__(self, position):
-        pass
+        if position == -1:
+            if self.beginNode == self.endNode:
+                self.beginNode = None
+                self.endNode = None
+            else:
+                currentNode = self.endNode
+                self.endNode = currentNode.pred
+                currentNode.pred = None
+        elif position == 0:
+            if self.beginNode == self.endNode:
+                self.beginNode = None
+                self.endNode = None
+            else:
+                currentNode = self.beginNode
+                self.beginNode = currentNode.succ
+                currentNode.succ = None
+        elif position == self.length()-1:
+            currentNode = self.endNode
+            self.endNode = currentNode.pred
+            predNode = currentNode.pred
+            predNode.succ = None
+            currentNode.pred = None
+        elif position > 0:
+            currentNode = self.beginNode
+            for i in range(1,position):
+                currentNode = currentNode.succ
+            succNode = currentNode.succ
+            predNode = currentNode.pred
+            predNode.succ = succNode
+            succNode.pred = predNode
+            currentNode.succ = None
+            currentNode.pred = None
+        elif position < -1:
+            currentNode = self.endNode
+            for i in range(1,abs(position)):
+                currentNode = currentNode.pred
+            succNode = currentNode.succ
+            predNode = currentNode.pred
+            predNode.succ = succNode
+            succNode.pred = predNode
+            currentNode.succ = None
+            currentNode.pred = None
 
 
 
@@ -47,13 +157,63 @@ class Liste:
 
 
 
+"""
+######Tests:
+
+node1 = Node("A")
+node2 = Node("B")
+node3 = Node("C")
+node4 = Node("D")
+node5 = Node("E")
+
+testlist = Liste()
+
+print(testlist.length())
+testlist.insert(node1, 0)
+print("##########")
+print(testlist[0])
+print(testlist.length())
+
+testlist.insert(node2, 10)
+print("##########")
+print(testlist[0])
+print(testlist[1])
+print(testlist.length())
+
+testlist.insert(node3, 1)
+print("##########")
+print(testlist[0])
+print(testlist[1])
+print(testlist[2])
+print(testlist.length())
+
+testlist.insert(node4, -3)
+print("##########")
+print(testlist[0])
+print(testlist[1])
+print(testlist[2])
+print(testlist[3])
+print(testlist.length())
+
+l=Liste()
+for i in range(100):
+    k = randint(1,500)
+    p = randint(0,99)
+    print("position:",p)
+    print("value k:", k, "bzw.", k//2)
+    #l.insert(Node(k//2),0)
+    l.insert(Node(k),p)
+    l.insert(Node(k//2),0)
+    print("durchlauf:",i)
+    print(l[0])
+    print(l[1])
+    it = l.beginNode
+    while it != None:
+        print("value:",it.value,"Pred:", it.pred,"Succ:",it.succ)
+        it = it.succ
 
 
-
-
-
-
-
+"""
 
 
 
@@ -163,6 +323,7 @@ except Exception as e:
     print("insert() not working or not implemented")
     print(e)
 # try the __delitem__ implementation
+
 try:
     for i in range(5):
         p = randint(0,99)
@@ -173,19 +334,24 @@ try:
 except Exception as e:
     print("del list[] not working or not implemented")
     print(e)
-correct = True
 
+correct = True
+print(l.length())
+print(len(realL))
+count = 0
 try:
     for i in range(max(l.length(), len(realL))):
         correct2 = (l[i] == realL[i])
         if(not correct2):
             print(realL[i], "expected at index",i)
             print(l[i], "found at index", i)
+            count +=1
         correct = correct and correct2
     if correct:
         print("28.3: your list has the correct Values")
     else:
         print("28.3 still has some errors, values are incorrect")
+        print(count)
 except Exception as e:
     print("Evaluation did not work, some function throws an error")
     print(e)
