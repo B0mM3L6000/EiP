@@ -30,15 +30,24 @@ class Encoder:
 
 
 
+##################################
+"""
+29.5:
+
+nein es gilt nicht, wenn z.B. das Dictionary für verschiedene schlüssel gleiche
+Bedeutungen hat
+
+z.B. dict erstellt mit den strings:
+"haus baum welt"
+"rot blau blau"
+
+und übersetzt werden soll:
+"baum welt haus"
+
+dann erhält man am ende: "welt welt haus"
 
 
-
-
-
-
-
-
-
+"""
 
 
 

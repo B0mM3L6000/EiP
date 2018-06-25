@@ -1,5 +1,5 @@
-string1 = "baum haus welt"
-string2 = "rot green blau"
+string1 = "haus baum welt"
+string2 = "rot blau blau"
 
 list1 = str.split(string1)
 list2 = str.split(string2)
@@ -9,7 +9,7 @@ for i in range(len(list1)):
 
 print(encoding)
 
-string = "haus welt welt"
+string = "baum welt haus"
 
 
 encodedstring = ""
@@ -18,7 +18,7 @@ for i in range(len(toencode)):
     encodedstring += encoding[toencode[i]] + " "
 print(encodedstring)
 
-string =" blau blau blau"
+string = encodedstring
 
 
 decodedic = {}
